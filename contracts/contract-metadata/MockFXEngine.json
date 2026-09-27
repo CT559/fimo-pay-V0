@@ -1,0 +1,103 @@
+{
+  "contractAddress": "0x1c8c2e64bfca6eafde8b9af04df9e51baf4b75d8",
+  "network": "ARC-TESTNET",
+  "deployerWalletId": "3c2464b2-8369-52e2-a782-800bbeca5396",
+  "contract_code_path": "/home/user/app/contracts/MockFXEngine.sol",
+  "contract_compiled_code_path": "/home/user/app/contracts/out/MockFXEngine.sol/MockFXEngine.json",
+  "contract_network_and_links": {
+    "Arc Testnet": "https://explorer.testnet.arc.io/address/0x1c8c2e64bfca6eafde8b9af04df9e51baf4b75d8"
+  },
+  "contract_deployments": [
+    {
+      "chain": "Arc Testnet",
+      "address": "0x1c8c2e64bfca6eafde8b9af04df9e51baf4b75d8",
+      "explorerUrl": "https://explorer.testnet.arc.io/address/0x1c8c2e64bfca6eafde8b9af04df9e51baf4b75d8",
+      "txHash": "0x745c067b591faeb3ef7495719aebd73149a6ef082e287a1db968b491ae2b7d4d",
+      "deployedAt": "2026-09-21T09:17:44.898Z"
+    }
+  ],
+  "abi": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "_oracle",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "convert",
+      "inputs": [
+        {
+          "name": "tokenIn",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "tokenOut",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amountIn",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "amountOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "oracle",
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "contract IFXOracle"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "quote",
+      "inputs": [
+        {
+          "name": "tokenIn",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "tokenOut",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "amountIn",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "amountOut",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    }
+  ]
+}

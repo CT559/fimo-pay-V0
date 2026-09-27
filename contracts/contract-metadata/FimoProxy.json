@@ -1,0 +1,86 @@
+{
+  "contractAddress": "0xd70b8c9a1b61f1c9ebb79803ae6a610add0be34a",
+  "network": "ARC-TESTNET",
+  "deployerWalletId": "3c2464b2-8369-52e2-a782-800bbeca5396",
+  "contract_code_path": "/home/user/app/contracts/FimoProxy.sol",
+  "contract_compiled_code_path": "/home/user/app/contracts/out/FimoProxy.sol/FimoProxy.json",
+  "contract_network_and_links": {
+    "Arc Testnet": "https://explorer.testnet.arc.io/address/0xd70b8c9a1b61f1c9ebb79803ae6a610add0be34a"
+  },
+  "contract_deployments": [
+    {
+      "chain": "Arc Testnet",
+      "address": "0xd70b8c9a1b61f1c9ebb79803ae6a610add0be34a",
+      "explorerUrl": "https://explorer.testnet.arc.io/address/0xd70b8c9a1b61f1c9ebb79803ae6a610add0be34a",
+      "txHash": "0x429de91f8105cd416526b492dfdf906b192508208278ded22344362c087c53ae",
+      "deployedAt": "2026-09-21T09:18:35.523Z"
+    }
+  ],
+  "abi": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "_logic",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "_data",
+          "type": "bytes",
+          "internalType": "bytes"
+        }
+      ],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "fallback",
+      "stateMutability": "payable"
+    },
+    {
+      "type": "event",
+      "name": "Upgraded",
+      "inputs": [
+        {
+          "name": "implementation",
+          "type": "address",
+          "indexed": true,
+          "internalType": "address"
+        }
+      ],
+      "anonymous": false
+    },
+    {
+      "type": "error",
+      "name": "AddressEmptyCode",
+      "inputs": [
+        {
+          "name": "target",
+          "type": "address",
+          "internalType": "address"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "ERC1967InvalidImplementation",
+      "inputs": [
+        {
+          "name": "implementation",
+          "type": "address",
+          "internalType": "address"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "ERC1967NonPayable",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "FailedCall",
+      "inputs": []
+    }
+  ]
+}

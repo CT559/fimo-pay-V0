@@ -1,0 +1,82 @@
+{
+  "contractAddress": "0x97e2b1d657374bdeeb56dd7f18b07d508f493ed3",
+  "network": "ARC-TESTNET",
+  "deployerWalletId": "3c2464b2-8369-52e2-a782-800bbeca5396",
+  "contract_code_path": "/home/user/app/contracts/MockFXOracle.sol",
+  "contract_compiled_code_path": "/home/user/app/contracts/out/MockFXOracle.sol/MockFXOracle.json",
+  "contract_network_and_links": {
+    "Arc Testnet": "https://explorer.testnet.arc.io/address/0x97e2b1d657374bdeeb56dd7f18b07d508f493ed3"
+  },
+  "contract_deployments": [
+    {
+      "chain": "Arc Testnet",
+      "address": "0x97e2b1d657374bdeeb56dd7f18b07d508f493ed3",
+      "explorerUrl": "https://explorer.testnet.arc.io/address/0x97e2b1d657374bdeeb56dd7f18b07d508f493ed3",
+      "txHash": "0xe8aa8ebd09969b9386a495c068dc343ce80b84cce631b5531082df4b5f1fb893",
+      "deployedAt": "2026-09-21T09:17:24.663Z"
+    }
+  ],
+  "abi": [
+    {
+      "type": "function",
+      "name": "getUSDPrice",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "price",
+          "type": "uint256",
+          "internalType": "uint256"
+        },
+        {
+          "name": "updatedAt",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "prices",
+      "inputs": [
+        {
+          "name": "",
+          "type": "address",
+          "internalType": "address"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "setPrice",
+      "inputs": [
+        {
+          "name": "token",
+          "type": "address",
+          "internalType": "address"
+        },
+        {
+          "name": "usdPrice6",
+          "type": "uint256",
+          "internalType": "uint256"
+        }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    }
+  ]
+}
