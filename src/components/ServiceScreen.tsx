@@ -211,7 +211,7 @@ export default function ServiceScreen({ lang, config }: ServiceScreenProps) {
                   {t(lang, config.titleKey as Parameters<typeof t>[1])} #001
                 </div>
                 <div style={{ fontSize: 12, color: 'var(--ink-2)' }}>
-                  Demo · Arc Testnet
+                  {t(lang, 'demo_label')}
                 </div>
               </div>
             </div>
@@ -261,7 +261,7 @@ export default function ServiceScreen({ lang, config }: ServiceScreenProps) {
             display: 'flex', alignItems: 'center', gap: 6,
           }}>
             <ShoppingCart size={11} />
-            Phí giao dịch ~$0.001 · Cố định · Arc EWMA
+            {t(lang, 'fee_fixed_note')}
           </div>
 
           {/* CTA */}

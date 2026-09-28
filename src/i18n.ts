@@ -83,6 +83,7 @@ export type I18nKey =
   | 'settings_active' | 'settings_limit_day' | 'settings_saved'
   | 'onramp_step1' | 'onramp_step2' | 'onramp_step3' | 'onramp_step4'
   | 'country_jp' | 'country_kr' | 'country_ph' | 'country_vn' | 'country_th' | 'country_tw'
+  | 'header_login' | 'ev_recorded_on' | 'fee_fixed_note' | 'demo_label' | 'gateway_live_note'
 
 type Translations = Record<I18nKey, string>
 
@@ -147,6 +148,7 @@ const vi: Translations = {
   settings_active: 'Active', settings_limit_day: '/ ngày', settings_saved: 'Đã lưu.',
   onramp_step1: 'Nhập số tiền muốn mua', onramp_step2: 'Xác minh nhanh (1 lần)', onramp_step3: 'Thanh toán bằng thẻ / Apple Pay', onramp_step4: 'USDC về ví trong vài phút',
   country_jp: 'Nhật Bản', country_kr: 'Hàn Quốc', country_ph: 'Philippines', country_vn: 'Việt Nam', country_th: 'Thái Lan', country_tw: 'Đài Loan',
+  header_login: 'Đăng nhập', ev_recorded_on: 'Đã ghi nhận trên Arc Testnet', fee_fixed_note: 'Phí giao dịch ~$0.001 · Cố định, không dao động · Arc EWMA', demo_label: 'Demo · Arc Testnet', gateway_live_note: 'Circle Gateway · Arc Testnet · <500ms',
   nav_ev: 'Sạc EV', nav_bridge: 'Nạp tiền', nav_gateway: 'Ví đa chuỗi',
   ev_title: 'Trạm sạc EV', ev_subtitle: 'Tự động đo · Tự động tính tiền · Bấm 1 nút xác nhận',
   ev_start: 'Bắt đầu sạc', ev_stop: 'Dừng sạc',
@@ -248,6 +250,7 @@ const en: Translations = {
   settings_active: 'Active', settings_limit_day: '/ day', settings_saved: 'Saved.',
   onramp_step1: 'Enter amount', onramp_step2: 'Quick KYC (one-time)', onramp_step3: 'Pay with card / Apple Pay', onramp_step4: 'USDC arrives in minutes',
   country_jp: 'Japan', country_kr: 'South Korea', country_ph: 'Philippines', country_vn: 'Vietnam', country_th: 'Thailand', country_tw: 'Taiwan',
+  header_login: 'Sign in', ev_recorded_on: 'Recorded on Arc Testnet', fee_fixed_note: 'Network fee ~$0.001 · Fixed, never spikes · Arc EWMA', demo_label: 'Demo · Arc Testnet', gateway_live_note: 'Circle Gateway · Arc Testnet · <500ms',
   nav_ev: 'EV Charge', nav_bridge: 'Add Funds', nav_gateway: 'Multi-chain',
   ev_title: 'EV Charging Station', ev_subtitle: 'Auto measure · Auto bill · One tap to confirm',
   ev_start: 'Start Charging', ev_stop: 'Stop Charging',
@@ -349,6 +352,7 @@ const ja: Translations = {
   settings_active: 'アクティブ', settings_limit_day: '/ 日', settings_saved: '保存しました。',
   onramp_step1: '金額を入力', onramp_step2: '本人確認（1回のみ）', onramp_step3: 'カード / Apple Pay で支払い', onramp_step4: '数分でUSDCが届く',
   country_jp: '日本', country_kr: '韓国', country_ph: 'フィリピン', country_vn: 'ベトナム', country_th: 'タイ', country_tw: '台湾',
+  header_login: 'ログイン', ev_recorded_on: 'Arc Testnetに記録済み', fee_fixed_note: 'ネットワーク手数料 ~$0.001 · 固定 · Arc EWMA', demo_label: 'デモ · Arc Testnet', gateway_live_note: 'Circle Gateway · Arc Testnet · <500ms',
   nav_ev: 'EV充電', nav_bridge: '入金', nav_gateway: 'マルチチェーン',
   ev_title: 'EV充電ステーション', ev_subtitle: '自動計測 · 自動課金 · ワンタップで確認',
   ev_start: '充電開始', ev_stop: '充電停止', ev_connecting: 'デバイスに接続中...',
@@ -446,6 +450,7 @@ const ko: Translations = {
   settings_active: '활성', settings_limit_day: '/ 일', settings_saved: '저장되었습니다.',
   onramp_step1: '금액 입력', onramp_step2: '빠른 KYC (1회만)', onramp_step3: '카드 / Apple Pay 결제', onramp_step4: 'USDC가 몇 분 내 도착',
   country_jp: '일본', country_kr: '한국', country_ph: '필리핀', country_vn: '베트남', country_th: '태국', country_tw: '대만',
+  header_login: '로그인', ev_recorded_on: 'Arc Testnet에 기록됨', fee_fixed_note: '네트워크 수수료 ~$0.001 · 고정 · Arc EWMA', demo_label: '데모 · Arc Testnet', gateway_live_note: 'Circle Gateway · Arc Testnet · <500ms',
   nav_ev: 'EV충전', nav_bridge: '입금', nav_gateway: '멀티체인',
   ev_title: 'EV 충전소', ev_subtitle: '자동 측정 · 자동 요금 · 한 번 탭으로 확인',
   ev_start: '충전 시작', ev_stop: '충전 중지', ev_connecting: '기기 연결 중...',
@@ -543,6 +548,7 @@ const th: Translations = {
   settings_active: 'ใช้งาน', settings_limit_day: '/ วัน', settings_saved: 'บันทึกแล้ว',
   onramp_step1: 'ป้อนจำนวนเงิน', onramp_step2: 'ยืนยันตัวตนด่วน (ครั้งเดียว)', onramp_step3: 'ชำระด้วยบัตร / Apple Pay', onramp_step4: 'USDC มาถึงภายในไม่กี่นาที',
   country_jp: 'ญี่ปุ่น', country_kr: 'เกาหลีใต้', country_ph: 'ฟิลิปปินส์', country_vn: 'เวียดนาม', country_th: 'ไทย', country_tw: 'ไต้หวัน',
+  header_login: 'เข้าสู่ระบบ', ev_recorded_on: 'บันทึกบน Arc Testnet แล้ว', fee_fixed_note: 'ค่าธรรมเนียมเครือข่าย ~$0.001 · คงที่ · Arc EWMA', demo_label: 'ทดลอง · Arc Testnet', gateway_live_note: 'Circle Gateway · Arc Testnet · <500ms',
   nav_ev: 'ชาร์จ EV', nav_bridge: 'เติมเงิน', nav_gateway: 'มัลติเชน',
   ev_title: 'สถานีชาร์จ EV', ev_subtitle: 'วัดอัตโนมัติ · คิดเงินอัตโนมัติ · แตะครั้งเดียวยืนยัน',
   ev_start: 'เริ่มชาร์จ', ev_stop: 'หยุดชาร์จ', ev_connecting: 'กำลังเชื่อมต่ออุปกรณ์...',
@@ -640,6 +646,7 @@ const zh: Translations = {
   settings_active: '啟用中', settings_limit_day: '/ 天', settings_saved: '已儲存。',
   onramp_step1: '輸入金額', onramp_step2: '快速實名認證（一次）', onramp_step3: '信用卡 / Apple Pay 付款', onramp_step4: 'USDC 數分鐘內入賬',
   country_jp: '日本', country_kr: '南韓', country_ph: '菲律賓', country_vn: '越南', country_th: '泰國', country_tw: '台灣',
+  header_login: '登入', ev_recorded_on: '已記錄於 Arc Testnet', fee_fixed_note: '網路費用 ~$0.001 · 固定 · Arc EWMA', demo_label: '示範 · Arc Testnet', gateway_live_note: 'Circle Gateway · Arc Testnet · <500ms',
   nav_ev: 'EV充電', nav_bridge: '儲值', nav_gateway: '多鏈',
   ev_title: 'EV充電站', ev_subtitle: '自動計量 · 自動計費 · 一鍵確認',
   ev_start: '開始充電', ev_stop: '停止充電', ev_connecting: '正在連接設備...',
@@ -737,6 +744,7 @@ const fil: Translations = {
   settings_active: 'Aktibo', settings_limit_day: '/ araw', settings_saved: 'Nai-save.',
   onramp_step1: 'Ilagay ang halaga', onramp_step2: 'Mabilis na KYC (isang beses)', onramp_step3: 'Bayad gamit ang card / Apple Pay', onramp_step4: 'USDC darating sa ilang minuto',
   country_jp: 'Japan', country_kr: 'South Korea', country_ph: 'Pilipinas', country_vn: 'Vietnam', country_th: 'Thailand', country_tw: 'Taiwan',
+  header_login: 'Mag-login', ev_recorded_on: 'Naitala sa Arc Testnet', fee_fixed_note: 'Network fee ~$0.001 · Nakapirming · Arc EWMA', demo_label: 'Demo · Arc Testnet', gateway_live_note: 'Circle Gateway · Arc Testnet · <500ms',
   nav_ev: 'EV Charge', nav_bridge: 'Mag-load', nav_gateway: 'Multi-chain',
   ev_title: 'EV Charging Station', ev_subtitle: 'Auto-measure · Auto-bill · Isang tap para kumpirmahin',
   ev_start: 'Simulan ang Pag-charge', ev_stop: 'Ihinto ang Pag-charge',

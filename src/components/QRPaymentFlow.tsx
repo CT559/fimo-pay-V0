@@ -10,7 +10,7 @@
  * Fallback: nếu không có camera → nhập mã thủ công
  */
 
-import { useState, useCallback, useRef } from 'react'
+import { useState, useCallback } from 'react'
 import { useQRScanner } from './useQRScanner.tsx'
 import { useAccount, useWriteContract } from 'wagmi'
 import { erc20Abi, parseUnits } from 'viem'
@@ -108,18 +108,13 @@ export default function QRPaymentFlow({ lang, mode = 'checkout' }: QRPaymentFlow
   const [noCam,    setNoCam]    = useState(false)
   const [manInput, setManInput] = useState('')
 
-  // ── QR Scanner hook — dùng ref để tránh circular dependency ──────────────────
-  const scannerRef = useRef<ReturnType<typeof useQRScanner> | null>(null)
+  // ── QR Scanner hook — onDetectedRef trong hook giữ callback stable ────────────
   const qrScanner = useQRScanner((raw: string) => {
-    scannerRef.current?.closeCamera()
     const { merchant: m, cart: c } = parseMerchantFromQR(raw)
     const tot = Math.round(c.reduce((s, i) => s + i.amount, 0) * 100) / 100
     setMerchant(m); setCart(c); setPhase('quoting')
     void agentGetBestQuote(m, tot).then(q => { setQuote(q); setPhase('confirmed') })
   })
-
-  // Gán ref sau khi qrScanner được tạo — không dùng trong render
-  if (scannerRef.current !== qrScanner) scannerRef.current = qrScanner
 
   // ── Mở camera ──────────────────────────────────────────────────────────────
   const handleOpenCamera = useCallback(() => {

@@ -285,7 +285,7 @@ export default function EVChargerLive({ lang }: { lang: LangCode }) {
             {t(lang, 'ev_connecting')}
           </div>
           <div style={{ fontSize: 13, color: 'var(--color-text-secondary)', marginTop: 8 }}>
-            Ghi nhận lên Arc Testnet
+            {t(lang, 'ev_recorded_on')}
           </div>
         </div>
       )}
@@ -340,7 +340,7 @@ export default function EVChargerLive({ lang }: { lang: LangCode }) {
             display: 'flex', alignItems: 'center', gap: 6,
           }}>
             <Zap size={12} />
-            Phí giao dịch ~$0.001 · Cố định, không dao động · Arc EWMA
+            {t(lang, 'fee_fixed_note')}
           </div>
 
           {/* Stop button */}

@@ -89,13 +89,12 @@ export function useServiceSession() {
   // ── Step 3: batchSettle ─────────────────────────────────────────────────────
   const batchSettle = async (
     sessionId: `0x${string}`,
-    user:      `0x${string}`,
+    payer:     `0x${string}`,
     amountUSD: number,
     serviceType: ServiceType,
     merchant?: `0x${string}`,
   ): Promise<`0x${string}`> => {
     const amountUSD6   = parseUnits(amountUSD.toFixed(6), 6)
-    const deadline     = BigInt(Math.floor(Date.now() / 1000) + 300) // +5 min
     const isRemittance = serviceType === 'remittance'
     const isDevice     = serviceType !== 'remittance'
 
@@ -105,13 +104,13 @@ export function useServiceSession() {
       functionName: 'batchSettle',
       args: [[{
         sessionId,
-        user,
-        payToken:     ARC_USDC.address,
-        merchant:     merchant ?? DEMO_MERCHANT,
-        amountUSD6,
-        deadline,
-        isRemittance,
-        isDeviceService: isDevice,
+        payer:           payer,
+        payToken:        ARC_USDC.address,
+        payAmount:       amountUSD6,
+        receiveToken:    ARC_USDC.address,
+        minReceiveAmount: amountUSD6,
+        serviceType:     isRemittance ? 5 : isDevice ? 1 : 1,
+        nonce:           BigInt(Date.now()),
       }]],
       chainId: CHAIN_ID,
     })
@@ -121,7 +120,7 @@ export function useServiceSession() {
 
   // ── Full flow: openSession → approve → batchSettle ──────────────────────────
   const settle = async (
-    user:        `0x${string}`,
+    payer:       `0x${string}`,
     amountUSD:   number,
     serviceType: ServiceType,
     merchant?:   `0x${string}`,

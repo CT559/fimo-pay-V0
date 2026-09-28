@@ -339,7 +339,7 @@ export default function App() {
                 ) : (
                   <>
                     <User size={14} />
-                    <span>Đăng nhập</span>
+                    <span>{t(lang, 'header_login')}</span>
                   </>
                 )}
               </button>

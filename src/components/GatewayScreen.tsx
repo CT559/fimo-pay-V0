@@ -19,7 +19,7 @@ import { toast } from 'sonner'
 import { Loader2, CheckCircle, ExternalLink, Info, AlertTriangle } from 'lucide-react'
 import { getUsdc, getProtocolContractByName, buildTxExplorerUrl } from '@/onchain-facts'
 import { Amount } from '@/onchain-money'
-import type { LangCode } from '../i18n'
+import { t, type LangCode } from '../i18n'
 
 // ── Network kind — flip to 'mainnet' when going live ───────────
 const NETWORK_KIND: 'testnet' | 'mainnet' = 'testnet'
@@ -52,7 +52,7 @@ const GATEWAY_API = NETWORK_KIND === 'testnet'
   ? 'https://gateway-api-testnet.circle.com/v1'
   : 'https://gateway-api.circle.com/v1'
 
-export default function GatewayScreen({ _lang }: { _lang: LangCode }) {
+export default function GatewayScreen({ lang }: { lang: LangCode }) {
   const { address, isConnected } = useAccount()
   const [depositAmount, setDepositAmount] = useState('')
   const [depositStep, setDepositStep] = useState<'idle' | 'approving' | 'depositing' | 'done'>('idle')
@@ -157,7 +157,7 @@ export default function GatewayScreen({ _lang }: { _lang: LangCode }) {
           Số dư hợp nhất
         </h2>
         <p className="text-xs mt-0.5" style={{ color: 'var(--subtle)' }}>
-          Circle Gateway · Arc Testnet · &lt;500ms
+          {t(lang, 'gateway_live_note')}
         </p>
       </div>
 
