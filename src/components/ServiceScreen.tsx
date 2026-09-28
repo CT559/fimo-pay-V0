@@ -45,8 +45,8 @@ export interface ServiceConfig {
   unitValue: string
 }
 
-const DEMO_MERCHANT = '0x5B12Ce46C7194aD57d143bC22847224047b1Ef42' as `0x${string}`
-const DEMO_DEVICE   = keccak256(toHex('FIMO_DEVICE_001'))
+const _DEMO_MERCHANT = '0x5B12Ce46C7194aD57d143bC22847224047b1Ef42' as `0x${string}`
+const _DEMO_DEVICE   = keccak256(toHex('FIMO_DEVICE_001'))
 
 type Phase = 'idle' | 'approving' | 'settling' | 'done' | 'error'
 
@@ -108,10 +108,8 @@ export default function ServiceScreen({ lang, config }: ServiceScreenProps) {
       args: [
         sessionId,
         address,
-        DEMO_DEVICE,
         ARC_USDC.address,
         parseUnits(totalUSD.toFixed(6), 6),
-        false, // isRemittance = false for device services
       ],
       chainId: CHAIN_ID,
     })
@@ -135,13 +133,13 @@ export default function ServiceScreen({ lang, config }: ServiceScreenProps) {
       functionName: 'batchSettle',
       args: [[{
         sessionId,
-        user:         address,
-        payToken:     ARC_USDC.address,
-        merchant:     DEMO_MERCHANT,
-        amountUSD6:   parseUnits(totalUSD.toFixed(6), 6),
-        deadline:     BigInt(Math.floor(Date.now() / 1000) + 300),
-        isRemittance: false,
-        isDeviceService: true,
+        payer:           address,
+        payToken:        ARC_USDC.address,
+        payAmount:       parseUnits(totalUSD.toFixed(6), 6),
+        receiveToken:    ARC_USDC.address,
+        minReceiveAmount: parseUnits(totalUSD.toFixed(6), 6),
+        serviceType:     1,
+        nonce:           BigInt(Date.now()),
       }]],
       chainId: CHAIN_ID,
     })

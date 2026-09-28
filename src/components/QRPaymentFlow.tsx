@@ -10,7 +10,7 @@
  * Fallback: nếu không có camera → nhập mã thủ công
  */
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import { useQRScanner } from './useQRScanner.tsx'
 import { useAccount, useWriteContract } from 'wagmi'
 import { erc20Abi, parseUnits } from 'viem'
@@ -116,17 +116,29 @@ export default function QRPaymentFlow({ lang, mode = 'checkout' }: QRPaymentFlow
     void agentGetBestQuote(m, tot).then(q => { setQuote(q); setPhase('confirmed') })
   })
 
-  // ── Mở camera ──────────────────────────────────────────────────────────────
+  // ── Mở camera — chỉ set phase; useEffect gọi openCamera() SAU render ──────
   const handleOpenCamera = useCallback(() => {
     setCamErr(''); setNoCam(false); setPhase('scanning')
-    void qrScanner.openCamera().then(result => {
+  }, [])
+
+  // Sau khi video element mount (phase === 'scanning'), gọi openCamera()
+  const didStartRef = useRef(false)
+  useEffect(() => {
+    if (phase !== 'scanning') { didStartRef.current = false; return }
+    if (didStartRef.current) return
+    didStartRef.current = true
+    qrScanner.openCamera().then(result => {
       if (!result.ok) {
-        setCamErr(result.error)
+        setCamErr(t(lang, result.error as Parameters<typeof t>[1]))
         setNoCam(result.noCam ?? false)
         setPhase('idle')
       }
+    }).catch(() => {
+      setCamErr(t(lang, 'cam_generic'))
+      setPhase('idle')
     })
-  }, [qrScanner])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase])
 
   // ── Nhập thủ công (fallback khi không có camera) ────────────────────────────
   const handleManualSubmit = useCallback(() => {

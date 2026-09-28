@@ -8,7 +8,8 @@
 import { useRef, useEffect, useCallback } from 'react'
 import jsQR from 'jsqr'
 
-type ScanResult = { ok: true } | { ok: false; error: string; noCam?: boolean }
+export type CamErrorCode = 'cam_not_supported' | 'cam_permission_denied' | 'cam_not_found' | 'cam_generic'
+type ScanResult = { ok: true } | { ok: false; error: string; code: CamErrorCode; noCam?: boolean }
 
 export function useQRScanner(onDetected: (raw: string) => void) {
   'use no memo'
@@ -33,7 +34,7 @@ export function useQRScanner(onDetected: (raw: string) => void) {
     detectedRef.current = false
 
     if (!navigator.mediaDevices?.getUserMedia) {
-      return { ok: false, error: 'Camera not supported on this browser', noCam: true }
+      return { ok: false, error: 'cam_not_supported', code: 'cam_not_supported' as CamErrorCode, noCam: true }
     }
 
     let stream: MediaStream
@@ -44,10 +45,10 @@ export function useQRScanner(onDetected: (raw: string) => void) {
     } catch (err) {
       const e = err as { name?: string; message?: string }
       if (e?.name === 'NotAllowedError')
-        return { ok: false, error: 'Camera permission denied. Please allow camera access.', noCam: false }
+        return { ok: false, error: 'cam_permission_denied', code: 'cam_permission_denied' as CamErrorCode, noCam: false }
       if (e?.name === 'NotFoundError')
-        return { ok: false, error: 'No camera found on this device.', noCam: true }
-      return { ok: false, error: e?.message ?? 'Could not open camera', noCam: true }
+        return { ok: false, error: 'cam_not_found', code: 'cam_not_found' as CamErrorCode, noCam: true }
+      return { ok: false, error: 'cam_generic', code: 'cam_generic' as CamErrorCode, noCam: true }
     }
 
     streamRef.current = stream
@@ -55,7 +56,7 @@ export function useQRScanner(onDetected: (raw: string) => void) {
     const canvas = canvasRef.current
     if (!video || !canvas) {
       stopStream()
-      return { ok: false, error: 'Video element not ready', noCam: false }
+      return { ok: false, error: 'cam_generic', code: 'cam_generic' as CamErrorCode, noCam: false }
     }
 
     video.srcObject = stream

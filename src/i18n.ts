@@ -72,6 +72,7 @@ export type I18nKey =
   | 'qr_idle_title' | 'qr_idle_sub'
   | 'qr_no_cam_hint' | 'qr_manual_placeholder' | 'qr_manual_submit'
   | 'qr_demo_btn' | 'qr_scanning_hint'
+  | 'cam_not_supported' | 'cam_permission_denied' | 'cam_not_found' | 'cam_generic'
   | 'qr_quoting' | 'qr_pay_label' | 'qr_receives' | 'qr_via'
   | 'qr_view_receipt' | 'qr_new_session'
   | 'qr_error_title' | 'qr_retry'
@@ -137,6 +138,7 @@ const vi: Translations = {
   qr_idle_title: 'Hướng camera vào mã QR của thiết bị thanh toán', qr_idle_sub: 'Máy bán hàng / quầy tự thanh toán siêu thị. AI tự chọn tỷ giá tốt nhất — bạn chỉ bấm 1 nút.',
   qr_no_cam_hint: 'Không có camera? Nhập mã thủ công:', qr_manual_placeholder: 'Nhập mã QR hoặc địa chỉ...', qr_manual_submit: 'Xác nhận',
   qr_demo_btn: '▶ Dùng thử Demo (không cần QR)', qr_scanning_hint: 'Đang quét... Hướng camera vào mã QR',
+  cam_not_supported: 'Trình duyệt không hỗ trợ camera', cam_permission_denied: 'Đã từ chối quyền camera — vui lòng cho phép', cam_not_found: 'Không tìm thấy camera trên thiết bị', cam_generic: 'Không thể mở camera',
   qr_quoting: 'AI đang tính tỷ giá tốt nhất...', qr_pay_label: 'Bạn trả', qr_receives: 'Người nhận nhận', qr_via: 'qua',
   qr_view_receipt: 'Xem biên lai', qr_new_session: '> Thanh toán mới',
   qr_error_title: 'Có lỗi xảy ra', qr_retry: 'Thử lại',
@@ -239,6 +241,7 @@ const en: Translations = {
   qr_idle_title: 'Point camera at the payment QR code', qr_idle_sub: 'Vending machine or self-checkout kiosk. AI picks the best rate — you just tap once.',
   qr_no_cam_hint: 'No camera? Enter code manually:', qr_manual_placeholder: 'Enter QR code or address...', qr_manual_submit: 'Confirm',
   qr_demo_btn: '▶ Try Demo (no QR needed)', qr_scanning_hint: 'Scanning... Point camera at QR code',
+  cam_not_supported: 'Camera not supported on this browser', cam_permission_denied: 'Camera access denied — please allow permission', cam_not_found: 'No camera found on this device', cam_generic: 'Could not open camera',
   qr_quoting: 'AI is finding the best rate...', qr_pay_label: 'You pay', qr_receives: 'Recipient gets', qr_via: 'via',
   qr_view_receipt: 'View receipt', qr_new_session: '> New payment',
   qr_error_title: 'An error occurred', qr_retry: 'Try again',
@@ -341,6 +344,7 @@ const ja: Translations = {
   qr_idle_title: 'QRコードにカメラを向けてください', qr_idle_sub: '自動販売機またはセルフレジ。AIが最適なレートを選択 — タップするだけ。',
   qr_no_cam_hint: 'カメラがない場合は手動入力:', qr_manual_placeholder: 'QRコードまたはアドレスを入力...', qr_manual_submit: '確認',
   qr_demo_btn: '▶ デモを試す（QR不要）', qr_scanning_hint: 'スキャン中... QRコードにカメラを向けてください',
+  cam_not_supported: 'このブラウザはカメラに対応していません', cam_permission_denied: 'カメラのアクセスが拒否されました', cam_not_found: 'カメラが見つかりません', cam_generic: 'カメラを開けません',
   qr_quoting: 'AIが最適なレートを計算中...', qr_pay_label: '支払額', qr_receives: '受取額', qr_via: '経由',
   qr_view_receipt: 'レシートを見る', qr_new_session: '> 新しい支払い',
   qr_error_title: 'エラーが発生しました', qr_retry: '再試行',
@@ -439,6 +443,7 @@ const ko: Translations = {
   qr_idle_title: '결제 QR 코드에 카메라를 향하세요', qr_idle_sub: '자판기 또는 셀프계산대. AI가 최적 환율 선택 — 한 번만 탭하세요.',
   qr_no_cam_hint: '카메라가 없으면 수동 입력:', qr_manual_placeholder: 'QR 코드 또는 주소 입력...', qr_manual_submit: '확인',
   qr_demo_btn: '▶ 데모 체험 (QR 불필요)', qr_scanning_hint: '스캔 중... QR 코드에 카메라를 향하세요',
+  cam_not_supported: '이 브라우저는 카메라를 지원하지 않습니다', cam_permission_denied: '카메라 권한이 거부되었습니다', cam_not_found: '이 기기에 카메라가 없습니다', cam_generic: '카메라를 열 수 없습니다',
   qr_quoting: 'AI가 최적 환율 계산 중...', qr_pay_label: '결제 금액', qr_receives: '수신 금액', qr_via: '경유',
   qr_view_receipt: '영수증 보기', qr_new_session: '> 새 결제',
   qr_error_title: '오류가 발생했습니다', qr_retry: '다시 시도',
@@ -537,6 +542,7 @@ const th: Translations = {
   qr_idle_title: 'ชี้กล้องไปที่รหัส QR ของอุปกรณ์', qr_idle_sub: 'ตู้จำหน่ายหรือเคาน์เตอร์เช็คเอาต์ AI เลือกอัตราที่ดีที่สุด — แตะเพียงครั้งเดียว',
   qr_no_cam_hint: 'ไม่มีกล้อง? ป้อนรหัสด้วยตนเอง:', qr_manual_placeholder: 'ป้อนรหัส QR หรือที่อยู่...', qr_manual_submit: 'ยืนยัน',
   qr_demo_btn: '▶ ทดลองใช้ Demo (ไม่ต้องการ QR)', qr_scanning_hint: 'กำลังสแกน... ชี้กล้องไปที่รหัส QR',
+  cam_not_supported: 'เบราว์เซอร์นี้ไม่รองรับกล้อง', cam_permission_denied: 'การเข้าถึงกล้องถูกปฏิเสธ', cam_not_found: 'ไม่พบกล้องในอุปกรณ์นี้', cam_generic: 'ไม่สามารถเปิดกล้องได้',
   qr_quoting: 'AI กำลังคำนวณอัตราที่ดีที่สุด...', qr_pay_label: 'คุณจ่าย', qr_receives: 'ผู้รับได้รับ', qr_via: 'ผ่าน',
   qr_view_receipt: 'ดูใบเสร็จ', qr_new_session: '> การชำระเงินใหม่',
   qr_error_title: 'เกิดข้อผิดพลาด', qr_retry: 'ลองอีกครั้ง',
@@ -635,6 +641,7 @@ const zh: Translations = {
   qr_idle_title: '將相機對準付款 QR 碼', qr_idle_sub: '自動販賣機或自助結帳台。AI 自動選擇最佳匯率 — 只需點一下。',
   qr_no_cam_hint: '沒有相機？手動輸入：', qr_manual_placeholder: '輸入 QR 碼或地址...', qr_manual_submit: '確認',
   qr_demo_btn: '▶ 體驗演示（無需 QR）', qr_scanning_hint: '掃描中... 將相機對準 QR 碼',
+  cam_not_supported: '此瀏覽器不支援相機', cam_permission_denied: '相機存取被拒絕，請允許權限', cam_not_found: '此裝置未找到相機', cam_generic: '無法開啟相機',
   qr_quoting: 'AI 正在計算最佳匯率...', qr_pay_label: '您支付', qr_receives: '收款方收到', qr_via: '透過',
   qr_view_receipt: '查看收據', qr_new_session: '> 新付款',
   qr_error_title: '發生錯誤', qr_retry: '重試',
@@ -733,6 +740,7 @@ const fil: Translations = {
   qr_idle_title: 'Ituro ang camera sa QR code ng device', qr_idle_sub: 'Vending machine o self-checkout counter. Pinipili ng AI ang pinakamahusay na rate — isang tap lang.',
   qr_no_cam_hint: 'Walang camera? Mag-type ng code:', qr_manual_placeholder: 'Ilagay ang QR code o address...', qr_manual_submit: 'Kumpirmahin',
   qr_demo_btn: '▶ Subukan ang Demo (walang QR)', qr_scanning_hint: 'Nagsascan... Ituro ang camera sa QR code',
+  cam_not_supported: 'Hindi suportado ang camera sa browser na ito', cam_permission_denied: 'Tinanggihan ang access sa camera', cam_not_found: 'Walang camera sa device na ito', cam_generic: 'Hindi mabuksan ang camera',
   qr_quoting: 'Kinakalkula ng AI ang pinakamahusay na rate...', qr_pay_label: 'Babayaran mo', qr_receives: 'Matatanggap ng tatanggap', qr_via: 'sa pamamagitan ng',
   qr_view_receipt: 'Tingnan ang resibo', qr_new_session: '> Bagong bayad',
   qr_error_title: 'May naganap na error', qr_retry: 'Subukan ulit',

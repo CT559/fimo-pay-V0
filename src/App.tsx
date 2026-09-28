@@ -155,7 +155,7 @@ function HomeScreen({ lang, onNavigate }: HomeScreenProps) {
 
           {/* Fee promise */}
           <p className="text-center text-[11px] mt-2.5" style={{ color: 'var(--muted)' }}>
-            Phí cố định ~$0.001 · Không ẩn · Arc EWMA
+            {t(lang, 'fee_fixed_note')}
           </p>
         </div>
       </section>

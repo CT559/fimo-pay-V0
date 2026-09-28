@@ -293,12 +293,12 @@ export default function PaymentScreen({ lang }: PaymentScreenProps) {
   const isConfirming = approveConfirming || settleConfirming
 
   // Step 2: gọi batchSettle sau khi approve xác nhận
-  const doSettle = useCallback((userAddr: `0x${string}`, merchant: `0x${string}`) => {
+  const doSettle = useCallback((userAddr: `0x${string}`, _merchant: `0x${string}`) => {
     const sessionId = keccak256(encodeAbiParameters(
       parseAbiParameters('address, uint256'),
       [userAddr, BigInt(Date.now())]
     ))
-    const deadline = BigInt(Math.floor(Date.now() / 1000) + 300)
+    const _deadline = BigInt(Math.floor(Date.now() / 1000) + 300)
     void encodeFunctionData
     toast.info('Bước 2/2: Ghi nhận onchain...')
     settleWrite({

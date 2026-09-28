@@ -63,10 +63,8 @@ export function useServiceSession() {
       args: [
         sessionId,
         user,
-        DEMO_DEVICE_ID,
         ARC_USDC.address,
         estimatedUSD6,
-        isRemittance,
       ],
       chainId: CHAIN_ID,
     })
@@ -127,13 +125,13 @@ export function useServiceSession() {
   ): Promise<SettleResult> => {
     toast.loading('Bước 1/3 · Mở phiên...', { id: 'settle' })
 
-    const sessionId = await openSession(user, amountUSD, serviceType)
+    const sessionId = await openSession(payer, amountUSD, serviceType)
     toast.loading('Bước 2/3 · Xác nhận USDC...', { id: 'settle' })
 
     await approveUsdc(amountUSD)
     toast.loading('Bước 3/3 · Ghi nhận giao dịch...', { id: 'settle' })
 
-    const txHash = await batchSettle(sessionId, user, amountUSD, serviceType, merchant)
+    const txHash = await batchSettle(sessionId, payer, amountUSD, serviceType, merchant)
     toast.success('Giao dịch thành công!', { id: 'settle' })
 
     return { txHash, txUrl: buildTxUrl(txHash), isDemo: false }
